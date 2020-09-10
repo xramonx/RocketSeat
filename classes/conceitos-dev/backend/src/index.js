@@ -1,8 +1,11 @@
 const express = require('express');
+const cors = require('cors');
 const { uuid, isUuid } = require('uuidv4');
 const { response } = require('express');
 
 const app = express(); //use doors always bigger than 80 (even then, thee are some reserved doors)
+
+app.use(cors());//in this format, allows all front-ends connects to this server.
 app.use(express.json()); //add a function (middleware) that all rotes must execute it, in this case JSON
 
 /**
