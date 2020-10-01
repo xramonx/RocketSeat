@@ -1,6 +1,4 @@
-import { query } from 'express';
 import {
-  Column,
   MigrationInterface,
   QueryRunner,
   TableColumn,

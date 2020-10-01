@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import { getRepository } from 'typeorm';
 import path from 'path';
 import fs from 'fs';
@@ -6,7 +7,6 @@ import uploadConfig from '../config/uploads';
 import AppError from '../errors/AppError';
 
 import User from '../models/User';
-import usersRouter from '../routes/users.routes';
 
 interface RequestDTO {
   user_id: string;

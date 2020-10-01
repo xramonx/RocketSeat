@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import { Router } from 'express';
 import { getCustomRepository } from 'typeorm';
 import { parseISO } from 'date-fns';
@@ -15,7 +16,7 @@ const appointmentsRouter = Router();
 appointmentsRouter.use(ensureAuthenticated);
 
 appointmentsRouter.get('/', async (request, response) => {
-  console.log(request.user);
+  // console.log(request.user);
   const appointmentsRepository = getCustomRepository(AppointmentsRepository);
   const appointments = await appointmentsRepository.find();
   return response.json(appointments);
@@ -23,22 +24,18 @@ appointmentsRouter.get('/', async (request, response) => {
 
 // POST http://localhost:3333/apointments definido no router que a raíz / está em /appointments/
 appointmentsRouter.post('/', async (request, response) => {
-  try {
-    const { provider_id, date } = request.body;
+  const { provider_id, date } = request.body;
 
-    const parsedDate = parseISO(date);
+  const parsedDate = parseISO(date);
 
-    const createAppointment = new CreateAppointmentService();
+  const createAppointment = new CreateAppointmentService();
 
-    const appointment = await createAppointment.execute({
-      provider_id,
-      date: parsedDate,
-    });
+  const appointment = await createAppointment.execute({
+    provider_id,
+    date: parsedDate,
+  });
 
-    return response.json(appointment); // .json({ message: 'hello world' });
-  } catch (err) {
-    return response.status(400).json({ error: err.message });
-  }
+  return response.json(appointment); // .json({ message: 'hello world' });
 });
 
 export default appointmentsRouter;
